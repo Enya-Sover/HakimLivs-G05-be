@@ -4,8 +4,11 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import productRoutes from './routes/products.js';
+import dataMigrationRouter from "./migration/data.migration.route_module";
+import Product from "./models/Product.js";
 
 dotenv.config();
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,6 +17,11 @@ const PORT = process.env.PORT || 3000;
 app.use(cors('*'));
 app.use(express.json());
 
+const dataPath = path.join(__dirname, "data", MONGODB_URI);
+app.use(
+  "/api/data-migration/Product.js",
+  dataMigrationRouter(Product, dataPath)
+);
 // API Documentation route
 app.get('/api', (req, res) => {
   res.json({
