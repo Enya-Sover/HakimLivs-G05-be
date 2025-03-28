@@ -1,6 +1,6 @@
 import express from "express";
 import { adminAuth } from "../middleware/auth.js";
-import { getAllProducts, deleteProduct, getProductById, createProducts } from "../controllers/productController.js";
+import { getAllProducts, deleteProduct, getProductById, createProducts, updateProduct, createMultipleProducts } from "../controllers/productController.js";
 
 const productsRouter = express.Router();
 
