@@ -6,4 +6,4 @@ const categoryRoutes = express.Router();
 categoryRoutes.get("/", getAllCategories);
 categoryRoutes.post("/", createNewCategory);
 
-export default categoryRoutes
+export default categoryRoutes 
