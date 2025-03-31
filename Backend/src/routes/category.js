@@ -3,8 +3,8 @@ import { createNewCategory, getCategoryById, getAllCategories } from '../control
 
 const categoryRoutes = express.Router();
 
+categoryRoutes.post("/", getAllCategories);
 categoryRoutes.get("/:id", getCategoryById);
 categoryRoutes.post("/", createNewCategory);
-categoryRoutes.post("/", getAllCategories);
 
 export default categoryRoutes 
