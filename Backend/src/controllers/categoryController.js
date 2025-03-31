@@ -1,6 +1,20 @@
 import Category from "../models/Category.js";
 
 
+// Hämta alla kategorier
+
+export const getAllCategories = async (req, res) => {
+    try {
+      const category = await Category.find(); 
+      res.status(200).json(category);
+    } catch (error) {
+      console.error(error)
+      res.status(500).json({ error: error.message });
+    }
+  };
+
+// Skapa ny kategori
+
 export const createNewCategory = async (req, res) => {
   console.log('hej från category')
     try {
