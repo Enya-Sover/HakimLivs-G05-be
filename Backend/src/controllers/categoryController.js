@@ -6,7 +6,8 @@ import Category from "../models/Category.js";
 
 export const getAllCategories = async (req, res) => {
     try {
-      const category = await Category.find(); 
+      const {id} = req.body
+      const category = await Category.findById(id); 
       res.status(200).json(category);
     } catch (error) {
       console.error(error)
