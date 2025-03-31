@@ -15,7 +15,7 @@ export const getAllProducts = async (req, res) => {
 // GET Specific Product funktion
 
 export const getProductById = async (req, res) => {
-  const {id} = req.paramsx
+  const {id} = req.params
   try {
     const product = await Product.findById(id);
     if (product === null) {
