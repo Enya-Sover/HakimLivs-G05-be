@@ -23,7 +23,8 @@ const productSchema = new mongoose.Schema({
   imageUrl: {
     type: String,
     required: false //True när frontend är klara 
-  }
+  },
+  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true }
 }, {
   timestamps: true
 });
