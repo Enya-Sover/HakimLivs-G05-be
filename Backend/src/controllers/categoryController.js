@@ -3,7 +3,19 @@ import Category from "../models/Category.js";
 
 
 // Hämta alla kategorier
+export const getAllCategories = async(req, res)=>{
+    const category = req.body
+    try {
+      if(!category){
+        return console.log('något gick fel med att hänta kategorier')
+      }
+      const category = await Category.find()
+      res.status(200).json(category)
+    } catch (error) {
+      console.error(error)
+    }
 
+}
 export const getCategoryById = async (req, res) => {
   const {id} = req.params
   try {
