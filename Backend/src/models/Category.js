@@ -1,7 +1,10 @@
 import mongoose from 'mongoose'
 
 const categorySchema = new mongoose.Schema ({
-    category: String
+    category: {
+        type: String,
+        required: false
+    }
 
 })
 
