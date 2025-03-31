@@ -38,9 +38,9 @@ app.get('/api', (req, res) => {
 });
 
 // Routes
+app.use('/api/category', categoryRoutes)
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
-app.use('/api/category', categoryRoutes)
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hakim-livs')
