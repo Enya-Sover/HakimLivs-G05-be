@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 // GET ALL funktion
 export const getAllProducts = async (req, res) => {
     try {
+      console.log('>>>>>>>>>>>>>>>>>>>')
       const products = await Product.find(); 
       res.status(200).json(products);
     } catch (error) {
@@ -27,6 +28,7 @@ export const getProductById = async (req, res) => {
     res.status(500).json({ error: error.message })
   }
 }
+
 
 
 // POST funktion
@@ -89,5 +91,23 @@ export const updateProduct = async (req, res)=>{
     console.error(error)
     res.status(500).json({sucess: false, message: 'Server error'})
 
+  }
+}
+
+
+// kategori via produkt ID
+export const getCategoryByProductId = async (req, res) => {
+  const {id} = req.params
+  try {
+    const category = await Product.findById(id).populate('category').select('category');
+   console.log(category)
+   
+    if (category === null) {
+      return res.status(404).json({error: error.message })
+    } else {
+    res.status(200).json(category); 
+  }   
+  } catch (error) {
+    res.status(500).json({ error: error.message })
   }
 }

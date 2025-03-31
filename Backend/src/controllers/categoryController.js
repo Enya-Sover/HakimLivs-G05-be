@@ -1,6 +1,5 @@
 import Category from "../models/Category.js";
-
-
+import Product from "../models/Product.js";
 
 // Hämta alla kategorier
 export const getAllCategories = async(req, res)=>{
@@ -35,7 +34,17 @@ export const createNewCategory = async (req, res) => {
       res.status(201).json(category);
     } catch (error) {
       console.error(error)
-      console.log(error)
       res.status(400).json({ error: error.message });
     }
   };
+
+  export const getProductsByCategoryId = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const products = await Product.find({ category: id });
+      res.status(201).json(products);
+    } catch (error) {
+      console.error(error)
+      res.status(400).json({ error: error.message });
+    }
+  }
