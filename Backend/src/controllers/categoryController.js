@@ -1,8 +1,7 @@
 import Category from "../models/Category.js";
-import mongoose from "mongoose";
 
 
-export const createNewCategory= async (req, res) => {
+export const createNewCategory = async (req, res) => {
   console.log('hej från category')
     try {
       const category = new Category(req.body);
