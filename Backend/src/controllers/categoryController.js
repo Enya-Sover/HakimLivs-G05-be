@@ -5,9 +5,6 @@ import Category from "../models/Category.js";
 // Hämta alla kategorier
 export const getAllCategories = async(req, res)=>{
     try {
-      if(!category){
-        return console.log('något gick fel med att hänta kategorier')
-      }
       const category = await Category.find()
       res.status(200).json(category)
     } catch (error) {
