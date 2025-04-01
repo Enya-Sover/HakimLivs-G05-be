@@ -1,6 +1,7 @@
 import Product from "../models/Product.js";
 import mongoose from "mongoose";
 
+// _______________________________________________________ GET FUNKTIONER ___________________________________
 
 // GET ALL funktion
 export const getAllProducts = async (req, res) => {
@@ -28,6 +29,31 @@ export const getProductById = async (req, res) => {
   }
 }
 
+// GET produkter baserat på category
+
+export const getProductsByCategoryId = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json( { error: "ID is no real ObjectId" } )
+    }
+    const products = await Product.find({ category: id }).populate( "category" );
+
+    if (products.length === 0) {
+      return res.status(404).json({ message: "No products found for this category" })
+    }
+
+    res.status(201).json(products);
+
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: error.message });
+  }
+}
+
+
+// ______________________________________________________POST FUNKTIONER___________________________________________
 
 // POST funktion
 export const createProducts = async (req, res) => {
@@ -41,7 +67,7 @@ export const createProducts = async (req, res) => {
   }
 };
 
-//Post för att lägga till flera produkter
+//POST för att lägga till flera produkter
 
 export const createMultipleProducts = async (req, res) => {
   try {
@@ -56,8 +82,10 @@ export const createMultipleProducts = async (req, res) => {
     res.status(400).json({ success: false, error: err.message})
   }
 }
+// ____________________________________________________________DELETE FUNKTIONER_______________________________
 
 //DELETE funktion
+
 export const deleteProduct = async(req, res)=>{
   const {id} = req.params
   // Valiterar att id:t är i rätt format innan try/catch
@@ -75,6 +103,10 @@ export const deleteProduct = async(req, res)=>{
       res.status(500).json({ success: false, error: "Internal server error" })
     }
 }
+
+// _____________________________________________________UPDATE Funktioner______________________________________________________
+
+// UPDATE product
 
 export const updateProduct = async (req, res)=>{
     const {id} = req.params
