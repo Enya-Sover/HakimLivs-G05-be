@@ -32,10 +32,18 @@ export const getCategoryById = async (req, res) => {
 
 export const createNewCategory = async (req, res) => {
   try {
+      const existingCategory = await Category.findOne({category: req.body.category})
+      
+      if(existingCategory) {
+        return res.status(400).json({ error: "Category already exists"})
+      }
+
       const category = new Category(req.body);
       await category.save();
+
       res.status(201).json(category);
     } catch (error) {
+      
       console.error(error)
       console.log(error)
       res.status(400).json({ error: error.message });

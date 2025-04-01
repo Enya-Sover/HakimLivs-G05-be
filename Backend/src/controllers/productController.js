@@ -32,9 +32,16 @@ export const getProductById = async (req, res) => {
 // POST funktion
 export const createProducts = async (req, res) => {
   try {
+    const existingProduct = await Product.findOne({name: req.body.name})
+
+    if(existingProduct) {
+      return res.status(400).json({error: "Product already exists"})
+    }
+
     const product = new Product(req.body);
     await product.save();
     res.status(201).json(product);
+    
   } catch (error) {
     console.error(error)
     res.status(400).json({ error: error.message });
