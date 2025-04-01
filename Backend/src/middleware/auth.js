@@ -6,6 +6,6 @@ export const auth = async (req, res, next) => {
 };
 
 export const adminAuth = async (req, res, next) => {
-  //TODO Implement admin authentication
+
   return next();
 };
