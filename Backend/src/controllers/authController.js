@@ -42,7 +42,7 @@ export const login = async (req, res) => {
         //     process.env.REFRESH_TOKEN_SECRET,
         //     { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
         // );
-        res.json({ message: 'Inloggningen lyckades',}) // <------ accessToken, refreshToken läggs till när FE är klara
+        res.status(200).json({ message: 'Inloggningen lyckades',}) // <------ accessToken, refreshToken läggs till när FE är klara
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
