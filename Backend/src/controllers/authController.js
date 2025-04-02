@@ -24,13 +24,14 @@ export const login = async (req, res) => {
         const { username, password } = req.body
         const user = await User.findOne({ username })
         
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise(resolve => setTimeout(resolve, 500)); // lägger in en timer så att svarstiden blir lika lång även om användaren finns eller inte
+
 
         // Jämför lösenord endast om användaren finns
         const isMatch = user ? await user.comparePassword(password) : false;
 
         if (!user || !isMatch) {
-            return res.status(401).json({ error: 'Fel användarnamn eller lösenord' });
+            return res.status(401).json({ error: 'Felaktiga inloggningsuppgifter' });
         }
         // avkommenteras när FE är klara
         // const accessToken = jwt.sign(
