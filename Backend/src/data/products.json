@@ -1,0 +1,89 @@
+[
+{
+    "_id": "67ea7ca19987bebce4ed5b5b",
+    "name": "Bananer",
+    "price": 29,
+    "description": "Gul",
+    "stock": 20,
+    "createdAt": "2025-03-31T11:29:37.817Z",
+    "updatedAt": "2025-03-31T11:29:37.817Z",
+    "__v": 0
+},
+{
+    "_id": "67ea88314e7104f0b2f0b4d4",
+    "name": "Banan",
+    "price": 29,
+    "description": "Fina bananer",
+    "stock": 20,
+    "category": "67ea7d908c82252b74195b69",
+    "createdAt": "2025-03-31T12:18:57.262Z",
+    "updatedAt": "2025-03-31T12:18:57.262Z",
+    "__v": 0
+},
+{
+    "_id": "67ebbb863402ac0fc5dc40f5",
+    "name": "Vindruvor",
+    "price": 20,
+    "description": "",
+    "stock": 40,
+    "createdAt": "2025-04-01T10:10:14.352Z",
+    "updatedAt": "2025-04-01T10:10:14.352Z",
+    "__v": 0
+},
+{
+    "_id": "67ebbc373402ac0fc5dc40ff",
+    "name": "Melon",
+    "price": 28,
+    "description": "",
+    "stock": 29,
+    "category": "67ebaf9a5b35d1533513f297",
+    "createdAt": "2025-04-01T10:13:11.974Z",
+    "updatedAt": "2025-04-01T10:13:11.974Z",
+    "__v": 0
+},
+{
+    "_id": "67ebbcce3402ac0fc5dc4105",
+    "name": "Grany Smith Äpple",
+    "price": 100,
+    "description": "",
+    "stock": 1,
+    "category": "67ebaf9a5b35d1533513f297",
+    "createdAt": "2025-04-01T10:15:42.485Z",
+    "updatedAt": "2025-04-01T10:15:42.485Z",
+    "__v": 0
+},
+{
+    "_id": "67ebdbef4c14332267b76b62",
+    "name": "Bulgur",
+    "price": 39,
+    "description": "",
+    "stock": 29,
+    "category": "67ebdb7b4c14332267b76b5e",
+    "createdAt": "2025-04-01T12:28:31.220Z",
+    "updatedAt": "2025-04-01T12:28:31.220Z",
+    "__v": 0
+},
+{
+    "_id": "67ecf341e0e8db509a8887b1",
+    "name": "1",
+    "price": 29.98,
+    "description": "Pink Lady Äpplen från östra Tyskland",
+    "stock": 40,
+    "category": "67ebaf9a5b35d1533513f297",
+    "createdAt": "2025-04-02T08:20:17.770Z",
+    "updatedAt": "2025-04-02T08:20:17.770Z",
+    "__v": 0
+},
+{
+    "_id": "67ed063221b4cdeb67e7d58d",
+    "name": "bulgur",
+    "price": 33,
+    "description": "Svenska hallon",
+    "stock": 120,
+    "category": "67ebdb7b4c14332267b76b5e",
+    "createdAt": "2025-04-02T09:41:06.791Z",
+    "updatedAt": "2025-04-02T09:41:06.791Z",
+    "__v": 0
+}
+
+]

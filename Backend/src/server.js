@@ -15,6 +15,24 @@ const PORT = process.env.PORT || 3000;
 app.use(cors('*'));
 app.use(express.json());
 
+
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+// Skapa dirname manuellt för ES-moduler
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = dirname(_filename);
+
+import dataMigrationRouterCommon from "./migration/data.migration.route_module.js";
+import Product from "./models/Product.js";
+const dataPath = join(_dirname, "data", "products.json");
+console.log("Datapath", dataPath)
+app.use(
+  "/api/data-migration/products",
+  dataMigrationRouterCommon(Product, dataPath)
+);
+
+
 // API Documentation route
 app.get('/api', (req, res) => {
   res.json({
