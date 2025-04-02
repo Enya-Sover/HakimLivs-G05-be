@@ -7,6 +7,6 @@ categoryRoutes.get("/", getAllCategories);
 categoryRoutes.get("/:id", getCategoryById);
 categoryRoutes.post("/", createNewCategory);
 categoryRoutes.delete("/:id", deleteCategory)
-categoryRoutes.delete("/:id", updateCategory)
+categoryRoutes.put("/:id", updateCategory)
 
 export default categoryRoutes 
