@@ -53,10 +53,10 @@ export const createNewCategory = async (req, res) => {
     const {id} = req.params
     const category = req.body
     if(!mongoose.Types.ObjectId.isValid(id)){
-      return res.status(404).json({success: false, message: 'Product not found'})
+      return res.status(404).json({success: false, message: 'Category not found'})
   } 
   try {
-    const updatedCategory = await Product.findByIdAndUpdate(id, category, {new: true, runValidators: true})
+    const updatedCategory = await Category.findByIdAndUpdate(id, category, {new: true, runValidators: true})
     res.status(200).json({success: true, data: updatedCategory})
   } catch (error) {
     console.error(error)
