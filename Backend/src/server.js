@@ -25,6 +25,8 @@ const _dirname = dirname(_filename);
 
 import dataMigrationRouterCommon from "./migration/data.migration.route_module.js";
 
+//Migration för Products
+
 import Product from "./models/Product.js";
 const dataPath = join(_dirname, "data", "products.json");
 console.log("Datapath", dataPath)
@@ -32,6 +34,8 @@ app.use(
   "/api/data-migration/products",
   dataMigrationRouterCommon(Product, dataPath)
 );
+
+//Migration för Category
 
 import Category from './models/Category.js';
 const categoryDataPath  = join(_dirname, "data", "categories.json");
