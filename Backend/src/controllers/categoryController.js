@@ -27,7 +27,6 @@ export const getCategoryById = async (req, res) => {
   }
 }
 
-
 // Skapa ny kategori
 
 export const createNewCategory = async (req, res) => {
