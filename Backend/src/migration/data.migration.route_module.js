@@ -1,5 +1,6 @@
 import express from "express";
-import { readFile } from "fs/promises";
+import { readFile,writeFile } from "fs/promises";
+
 /**
  * @description This function is used to create a route for data migration and teardown
  * @param {import("mongoose").Model} model
@@ -54,6 +55,23 @@ function dataMigrationRouter(model, dataPath) {
     } catch (error) {
       res.status(500).json({
         message: "Error tearing down data",
+        error: error.message,
+      });
+    }
+  });
+
+  router.get("/export/", async (req, res) => {
+    try {
+      const data = await model.find().lean(); // lean() for plain JS objects
+      await writeFile(dataPath, JSON.stringify(data, null, 2), "utf8");
+
+      res.status(200).json({
+        message: "Data exported to JSON file successfully",
+        filePath: dataPath,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "Error exporting data",
         error: error.message,
       });
     }

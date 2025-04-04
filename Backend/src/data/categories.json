@@ -1,42 +1,112 @@
 [
-    {
-        "_id": "67ebaf9a5b35d1533513f297",
-        "category": "Frukt & Grönt",
-        "__v": 0
-    },
-    {
-        "_id": "67ebb8d83ffaed2827dd7693",
-        "category": "Kött",
-        "__v": 0
-    },
-    {
-        "_id": "67ebbad4c17c3e469d23f874",
-        "category": "Dryck",
-        "__v": 0
-    },
-    {
-        "_id": "67ebdb7b4c14332267b76b5e",
-        "category": "Skafferi",
-        "__v": 0
-    },
-    {
-        "_id": "67ed0ff121832f971ce0a592",
-        "category": "Franska varor",
-        "__v": 0
-    },
-    {
-        "_id": "67ed13c9b691b28459c7f5c3",
-        "category": "pasta",
-        "__v": 0
-    },
-    {
-        "_id": "67ed13dcb691b28459c7f5c7",
-        "category": "ris",
-        "__v": 0
-    },
-    {
-        "_id": "67eda54f6b529964e7f804b1",
-        "category": "frys",
-        "__v": 0
-    }
+  {
+    "_id": "67ebaf9a5b35d1533513f297",
+    "__v": 0,
+    "category": "frukt & grönt"
+  },
+  {
+    "_id": "67ebbad4c17c3e469d23f874",
+    "__v": 0,
+    "category": "dryck"
+  },
+  {
+    "_id": "67ebdb7b4c14332267b76b5e",
+    "__v": 0,
+    "category": "skafferi"
+  },
+  {
+    "_id": "67eda54f6b529964e7f804b1",
+    "__v": 0,
+    "category": "frys"
+  },
+  {
+    "_id": "67ee721b446ac17cc99a9c6d",
+    "category": "mejeri, ost & juice",
+    "__v": 0
+  },
+  {
+    "_id": "67ee7229446ac17cc99a9c70",
+    "category": "bröd & bageri",
+    "__v": 0
+  },
+  {
+    "_id": "67ee7237446ac17cc99a9c73",
+    "category": "chark",
+    "__v": 0
+  },
+  {
+    "_id": "67ee7244446ac17cc99a9c76",
+    "category": "fisk & skaldjur",
+    "__v": 0
+  },
+  {
+    "_id": "67ee7253446ac17cc99a9c79",
+    "category": "hem & hushåll",
+    "__v": 0
+  },
+  {
+    "_id": "67ee726e446ac17cc99a9c7c",
+    "category": "färdigmat & mellanmål",
+    "__v": 0
+  },
+  {
+    "_id": "67ee727e446ac17cc99a9c7f",
+    "category": "glass, godis & snacks",
+    "__v": 0
+  },
+  {
+    "_id": "67ee728d446ac17cc99a9c82",
+    "category": "barn & baby",
+    "__v": 0
+  },
+  {
+    "_id": "67ee729e446ac17cc99a9c85",
+    "category": "apotek, hygien & hälsa",
+    "__v": 0
+  },
+  {
+    "_id": "67ee72a8446ac17cc99a9c88",
+    "category": "kryddor",
+    "__v": 0
+  },
+  {
+    "_id": "67ee72c3446ac17cc99a9c8b",
+    "category": "djurmat & tillbehör",
+    "__v": 0
+  },
+  {
+    "_id": "67ee72cd446ac17cc99a9c8e",
+    "category": "tidningar",
+    "__v": 0
+  },
+  {
+    "_id": "67ee72f0446ac17cc99a9c91",
+    "category": "veganskt",
+    "__v": 0
+  },
+  {
+    "_id": "67ee7315446ac17cc99a9c95",
+    "category": "bröd, kex & kakor",
+    "__v": 0
+  },
+  {
+    "_id": "67ebb8d83ffaed2827dd7693",
+    "__v": 0,
+    "category": "kött"
+  },
+  {
+    "_id": "67ed0ff121832f971ce0a592",
+    "__v": 0,
+    "category": "franska varor"
+  },
+  {
+    "_id": "67ed13c9b691b28459c7f5c3",
+    "__v": 0,
+    "category": "pasta"
+  },
+  {
+    "_id": "67ed13dcb691b28459c7f5c7",
+    "__v": 0,
+    "category": "ris"
+  }
 ]
