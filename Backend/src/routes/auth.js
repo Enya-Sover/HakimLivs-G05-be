@@ -1,7 +1,12 @@
 import express from 'express';
-import {register, login} from '../controllers/authController.js'
+import {getAdminUser, register, login} from '../controllers/authController.js'
 
 const authRouter = express.Router();
+
+
+//Get adminUser
+
+authRouter.get("/", getAdminUser)
 
 // Register
 authRouter.post('/register', register);
