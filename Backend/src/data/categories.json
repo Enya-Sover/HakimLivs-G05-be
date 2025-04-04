@@ -1,0 +1,42 @@
+[
+    {
+        "_id": "67ebaf9a5b35d1533513f297",
+        "category": "Frukt & Grönt",
+        "__v": 0
+    },
+    {
+        "_id": "67ebb8d83ffaed2827dd7693",
+        "category": "Kött",
+        "__v": 0
+    },
+    {
+        "_id": "67ebbad4c17c3e469d23f874",
+        "category": "Dryck",
+        "__v": 0
+    },
+    {
+        "_id": "67ebdb7b4c14332267b76b5e",
+        "category": "Skafferi",
+        "__v": 0
+    },
+    {
+        "_id": "67ed0ff121832f971ce0a592",
+        "category": "Franska varor",
+        "__v": 0
+    },
+    {
+        "_id": "67ed13c9b691b28459c7f5c3",
+        "category": "pasta",
+        "__v": 0
+    },
+    {
+        "_id": "67ed13dcb691b28459c7f5c7",
+        "category": "ris",
+        "__v": 0
+    },
+    {
+        "_id": "67eda54f6b529964e7f804b1",
+        "category": "frys",
+        "__v": 0
+    }
+]
