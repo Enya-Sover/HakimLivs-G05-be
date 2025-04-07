@@ -6,6 +6,7 @@ import authRoutes from './routes/auth.js';
 import productRoutes from './routes/products.js';
 import categoryRoutes from './routes/category.js'
 import orderRoutes from "./routes/order.js"
+import userRoutes from './routes/users.js'
 
 dotenv.config();
 
@@ -73,6 +74,7 @@ app.use('/api/category', categoryRoutes)
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use("/api/order", orderRoutes)
+app.use("/api/user", userRoutes)
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hakim-livs')
