@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import User from "../models/User";
+import User from "../models/User.js";
 
 
 // Hämta alla användare
@@ -11,19 +11,5 @@ export const getAllUsers = async (req, res) => {
     console.error(error);
   }
 };
-
-// Hämta alla användare med adminrättigheter
-export const getAdminUser = async (req, res) => {
-    try {
-        const adminUser = await User.find({isAdmin: true})
-        
-        if(!adminUser) {
-            return res.status(404).json({error: "No admin user found"})
-        }
-        res.status(200).json(adminUser)
-    } catch(error) {
-        res.status(500).json({error: "Server error", details:error.message})
-    }
-}
 
 

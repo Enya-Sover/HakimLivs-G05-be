@@ -1,12 +1,12 @@
 import express from 'express'
-import { getAllUsers, getAdminUser, getUserInfo } from '../controllers/userController'
+import {getAllUsers} from '../controllers/userController.js'
 // import authMiddleware from '../middleware/authMiddleware.js';
 
-const userRouter = express.Router();
+const userRoutes = express.Router();
 
-userRouter.get("/", getAllUsers)
-userRouter.get("/admin", getAdminUser)
+userRoutes.get("/", getAllUsers)
 
 
-export default userRouter
+
+export default userRoutes
 
