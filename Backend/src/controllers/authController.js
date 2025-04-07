@@ -2,20 +2,6 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 
-export const getAdminUser = async (req, res) => {
-    try {
-        const adminUser = await User.find({isAdmin: true})
-        
-        if(!adminUser) {
-            return res.status(404).json({error: "No admin user found"})
-        }
-        res.status(200).json(adminUser)
-    } catch(error) {
-        res.status(500).json({error: "Server error", details:error.message})
-    }
-
-}
-
 export const register = async (req, res) => {
     try {
         const user = new User(req.body);

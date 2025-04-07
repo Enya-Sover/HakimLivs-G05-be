@@ -14,6 +14,30 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  email: { type: String,
+    required: true,
+    unique: true,
+    trim: true
+  },
+  phone: {
+    type: Number,
+    required: true,
+    trim: true
+  },
+  adress: [ 
+    {
+      street: {type: String, required: true},
+      zipcode: {type: Number, required: true},
+      city: {type: String, required: true},
+      country: {type: String, required: true}
+    }
+  ],
+  orders: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Order'
+    }
+  ],
   isAdmin: {
     type: Boolean,
     default: false
