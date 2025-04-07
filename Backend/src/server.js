@@ -72,7 +72,7 @@ app.get('/api', (req, res) => {
 app.use('/api/category', categoryRoutes)
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
-app.use('/api/users', userRoutes)
+app.use('/api/user', userRoutes)
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hakim-livs')
