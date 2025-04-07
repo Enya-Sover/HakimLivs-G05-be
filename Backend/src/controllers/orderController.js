@@ -1,7 +1,6 @@
 import Order from "../models/Order.js";
 import User from "../models/User.js";
 import mongoose from "mongoose";
-import User from "../models/User.js";
 
 
 //Skapa en order
