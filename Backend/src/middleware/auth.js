@@ -20,7 +20,7 @@ export const auth = async (req, res, next) => {
 };
 
 export const adminAuth = (req, res, next) => {
-  if (!req.user.isAdmin) { // !req.user || !req.user.isAdmin
+  if (!req.user || !req.user.isAdmin) { 
     return res.status(403).json({ message: 'Åtkomst nekad. Endast admins tillåtna.' });
   }
    next();
