@@ -14,13 +14,48 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  email: { type: String,
+    required: true,
+    unique: true,
+    trim: true
+  },
+  phone: {
+    type: Number,
+    required: true,
+    trim: true
+  },
+  adress: [ 
+    {
+      street: {type: String, required: true},
+      zipcode: {type: Number, required: true},
+      city: {type: String, required: true},
+      country: {type: String, required: true}
+    }
+  ],
+  orders: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Order'
+    }
+  ],
   isAdmin: {
     type: Boolean,
     default: false
+  },
+  totalAmount: {
+    type: Number,
+    default: 0
+  },
+  lojaltyBonus: {
+    type: Boolean,
+    default: false
   }
-}, {
+ 
+}, 
+{
   timestamps: true
 });
+
 
 // Hash password before saving
 userSchema.pre('save', async function(next) {
@@ -58,5 +93,13 @@ userSchema.methods.generateRefreshToken = function () {
   );
 };
 
+userSchema.pre('save', function(next) {
+  if (this.totalAmount >= 10000) {
+    this.lojaltyBonus = true;
+  } else {
+    this.lojaltyBonus = false;
+  }
+  next();
+});
 
 export default mongoose.model('User', userSchema);

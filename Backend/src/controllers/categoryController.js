@@ -31,13 +31,15 @@ export const getCategoryById = async (req, res) => {
 
 export const createNewCategory = async (req, res) => {
   try {
+      const categoryName = req.body.category.toLowerCase().trim()
+
       const existingCategory = await Category.findOne({category: req.body.category})
       
       if(existingCategory) {
         return res.status(400).json({ error: "Category already exists"})
       }
 
-      const category = new Category(req.body);
+      const category = new Category({ category: categoryName});
       await category.save();
 
       res.status(201).json(category);
@@ -52,10 +54,10 @@ export const createNewCategory = async (req, res) => {
     const {id} = req.params
     const category = req.body
     if(!mongoose.Types.ObjectId.isValid(id)){
-      return res.status(404).json({success: false, message: 'Product not found'})
+      return res.status(404).json({success: false, message: 'Category not found'})
   } 
   try {
-    const updatedCategory = await Product.findByIdAndUpdate(id, category, {new: true, runValidators: true})
+    const updatedCategory = await Category.findByIdAndUpdate(id, category, {new: true, runValidators: true})
     res.status(200).json({success: true, data: updatedCategory})
   } catch (error) {
     console.error(error)

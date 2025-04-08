@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import productRoutes from './routes/products.js';
 import categoryRoutes from './routes/category.js'
+import orderRoutes from "./routes/order.js"
+import userRoutes from './routes/users.js'
 
 dotenv.config();
 
@@ -14,6 +16,36 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors('*'));
 app.use(express.json());
+
+//Migration
+
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = dirname(_filename);
+
+import dataMigrationRouterCommon from "./migration/data.migration.route_module.js";
+
+//Migration för Products
+
+import Product from "./models/Product.js";
+const dataPath = join(_dirname, "data", "products.json");
+console.log("Datapath", dataPath)
+app.use(
+  "/api/data-migration/products",
+  dataMigrationRouterCommon(Product, dataPath)
+);
+
+//Migration för Category
+
+import Category from './models/Category.js';
+const categoryDataPath  = join(_dirname, "data", "categories.json");
+app.use(
+  "/api/data-migration/categories",
+  dataMigrationRouterCommon(Category, categoryDataPath)
+);
+
 
 // API Documentation route
 app.get('/api', (req, res) => {
@@ -41,6 +73,8 @@ app.get('/api', (req, res) => {
 app.use('/api/category', categoryRoutes)
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
+app.use("/api/order", orderRoutes)
+app.use("/api/user", userRoutes)
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hakim-livs')

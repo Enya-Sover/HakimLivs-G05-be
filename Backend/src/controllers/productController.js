@@ -41,10 +41,10 @@ export const getProductsByCategoryId = async (req, res) => {
     const products = await Product.find({ category: id }).populate( "category" );
 
     if (products.length === 0) {
-      return res.status(404).json({ message: "No products found for this category" })
+      return res.status(200).json({ message: "There is no products connected to this category" })
     }
 
-    res.status(201).json(products);
+    res.status(200).json(products);
 
   } catch (error) {
     console.error(error)

@@ -1,0 +1,110 @@
+[
+  {
+    "_id": "67ebbb863402ac0fc5dc40f5",
+    "name": "Vindruvor111",
+    "price": 20,
+    "description": "testar update",
+    "stock": 40,
+    "category": "67ebaf9a5b35d1533513f297",
+    "__v": 0,
+    "createdAt": "2025-04-03T08:26:36.318Z",
+    "updatedAt": "2025-04-03T15:46:22.962Z",
+    "imageUrl": ""
+  },
+  {
+    "_id": "67ee463c9606540e4b292fe1",
+    "name": "Grany Smith Äpple11",
+    "price": 100,
+    "description": "barca",
+    "stock": 1,
+    "category": "67ebaf9a5b35d1533513f297",
+    "__v": 0,
+    "createdAt": "2025-04-03T08:26:36.318Z",
+    "updatedAt": "2025-04-03T15:51:46.253Z",
+    "imageUrl": ""
+  },
+  {
+    "_id": "67ee8e7fac7153032db9d3f5",
+    "name": "barca",
+    "price": 100,
+    "description": "asdabara",
+    "stock": 11,
+    "imageUrl": "undefined",
+    "category": "67ebaf9a5b35d1533513f297",
+    "createdAt": "2025-04-03T13:34:55.820Z",
+    "updatedAt": "2025-04-03T13:34:55.820Z",
+    "__v": 0
+  },
+  {
+    "_id": "67eeaa95a9719e0df1b0f06f",
+    "name": "abba",
+    "price": 10,
+    "description": "barca",
+    "stock": 10,
+    "imageUrl": "",
+    "category": "67ee72cd446ac17cc99a9c8e",
+    "createdAt": "2025-04-03T15:34:45.973Z",
+    "updatedAt": "2025-04-03T15:34:45.973Z",
+    "__v": 0
+  },
+  {
+    "_id": "67eeace5f521d2d038d02da7",
+    "name": "testar igen1",
+    "price": 20,
+    "description": "test",
+    "stock": 22,
+    "imageUrl": "",
+    "category": "67ee72cd446ac17cc99a9c8e",
+    "createdAt": "2025-04-03T15:44:37.616Z",
+    "updatedAt": "2025-04-03T15:45:39.359Z",
+    "__v": 0
+  },
+  {
+    "_id": "67eeb5afa8185251c1386710",
+    "name": "not in stock",
+    "price": 123,
+    "description": "sdasda",
+    "stock": 0,
+    "imageUrl": "",
+    "category": "67ee72cd446ac17cc99a9c8e",
+    "createdAt": "2025-04-03T16:22:07.990Z",
+    "updatedAt": "2025-04-03T16:22:07.990Z",
+    "__v": 0
+  },
+  {
+    "_id": "67ef8eafac1948721e488abd",
+    "name": "Äpplen",
+    "price": 0,
+    "description": "Äpplen som luktar rosor\n",
+    "stock": 0,
+    "imageUrl": "https://www.applen-pinklady.com/app/uploads/2022/11/PommeFace_sansPLU_sticker_2022-620x593.png",
+    "category": "67ebaf9a5b35d1533513f297",
+    "createdAt": "2025-04-04T07:47:59.294Z",
+    "updatedAt": "2025-04-04T07:54:45.324Z",
+    "__v": 0
+  },
+  {
+    "_id": "67ef96888dbe749873c02a6b",
+    "name": "Is",
+    "price": 99,
+    "description": "Glutenfri Lågkalori Laktosfri Vegansk Is",
+    "stock": 10000,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/IceBlockNearJoekullsarlon.jpg/1200px-IceBlockNearJoekullsarlon.jpg",
+    "category": "67ee72f0446ac17cc99a9c91",
+    "createdAt": "2025-04-04T08:21:28.935Z",
+    "updatedAt": "2025-04-04T08:21:28.935Z",
+    "__v": 0
+  },
+  {
+    "_id": "67ef99818dbe749873c02a73",
+    "name": "Salt",
+    "price": 30,
+    "description": "NaCl",
+    "stock": 40,
+    "imageUrl": "",
+    "category": "67ee72a8446ac17cc99a9c88",
+    "createdAt": "2025-04-04T08:34:09.539Z",
+    "updatedAt": "2025-04-04T08:59:02.506Z",
+    "__v": 0
+  }
+]
