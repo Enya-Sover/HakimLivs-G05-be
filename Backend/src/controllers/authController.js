@@ -2,6 +2,7 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 
+
 export const register = async (req, res) => {
     try {
         const user = new User(req.body);
@@ -24,7 +25,7 @@ export const login = async (req, res) => {
         const { username, password } = req.body
         const user = await User.findOne({ username })
         
-        await new Promise(resolve => setTimeout(resolve, 500)); // lägger in en timer så att svarstiden blir lika lång även om användaren finns eller inte för extra säkerhet
+        // await new Promise(resolve => setTimeout(resolve, 500)); // lägger in en timer så att svarstiden blir lika lång även om användaren finns eller inte för extra säkerhet
 
 
         // Jämför lösenord endast om användaren finns
