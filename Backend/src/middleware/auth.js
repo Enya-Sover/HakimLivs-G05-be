@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 export const auth = async (req, res, next) => {
   const authHeader = req.headers.authorization
   // implementera lite "misstagslogik"
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+  if (!authHeader || !authHeader.startsWith('Bearer')) {
     return res.status(401).json({ message: 'Ingen token tillhandahållen' });
   }
   const token = authHeader.split(' ')[1];
