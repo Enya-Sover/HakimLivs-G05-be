@@ -38,12 +38,12 @@ export const login = async (req, res) => {
         const accessToken = jwt.sign(
             { id: user._id, isAdmin: user.isAdmin },
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
+            { expiresIn: '1d' }
         );
         const refreshToken = jwt.sign(
             { id: user._id, isAdmin: user.isAdmin },
             process.env.REFRESH_TOKEN_SECRET,
-            { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
+            { expiresIn: '2d' }
         );
         res.status(200).json({ message: 'Inloggningen lyckades', accessToken, refreshToken}) 
     } catch (error) {
