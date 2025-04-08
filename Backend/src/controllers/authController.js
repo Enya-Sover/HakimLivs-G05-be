@@ -25,7 +25,7 @@ export const login = async (req, res) => {
         const { username, password } = req.body
         const user = await User.findOne({ username })
         
-        // await new Promise(resolve => setTimeout(resolve, 500)); // lägger in en timer så att svarstiden blir lika lång även om användaren finns eller inte för extra säkerhet
+        await new Promise(resolve => setTimeout(resolve, 500)); // lägger in en timer så att svarstiden blir lika lång även om användaren finns eller inte för extra säkerhet
 
 
         // Jämför lösenord endast om användaren finns
@@ -37,12 +37,12 @@ export const login = async (req, res) => {
         // avkommenteras när FE är klara
         const accessToken = jwt.sign(
             { id: user._id, isAdmin: user.isAdmin },
-            process.env.ACCESS_TOKEN_SECRET,
+            "FED",
             { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
         );
         const refreshToken = jwt.sign(
             { id: user._id, isAdmin: user.isAdmin },
-            process.env.REFRESH_TOKEN_SECRET,
+            "FED",
             { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
         );
         res.status(200).json({ message: 'Inloggningen lyckades', accessToken, refreshToken}) 
