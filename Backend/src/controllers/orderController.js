@@ -1,7 +1,6 @@
 import Order from "../models/Order.js";
 import User from "../models/User.js";
 import mongoose from "mongoose";
-import User from "../models/User.js";
 
 
 //Skapa en order
@@ -29,6 +28,7 @@ export const createNewOrder = async (req, res) => {
 
         await newOrder.save()
         user.orders.push(newOrder._id)
+        user.totalAmount += totalAmount;
         await user.save()
 
         res.status(201).json(newOrder)

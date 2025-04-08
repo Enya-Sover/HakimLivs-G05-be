@@ -41,10 +41,21 @@ const userSchema = new mongoose.Schema({
   isAdmin: {
     type: Boolean,
     default: false
+  },
+  totalAmount: {
+    type: Number,
+    default: 0
+  },
+  lojaltyBonus: {
+    type: Boolean,
+    default: false
   }
-}, {
+ 
+}, 
+{
   timestamps: true
 });
+
 
 // Hash password before saving
 userSchema.pre('save', async function(next) {
@@ -82,5 +93,13 @@ userSchema.methods.generateRefreshToken = function () {
   );
 };
 
+userSchema.pre('save', function(next) {
+  if (this.totalAmount >= 10000) {
+    this.lojaltyBonus = true;
+  } else {
+    this.lojaltyBonus = false;
+  }
+  next();
+});
 
 export default mongoose.model('User', userSchema);
