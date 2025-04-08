@@ -37,12 +37,12 @@ export const login = async (req, res) => {
         // avkommenteras när FE är klara
         const accessToken = jwt.sign(
             { id: user._id, isAdmin: user.isAdmin },
-            process.env.ACCESS_TOKEN_SECRET,
+            `${process.env.ACCESS_TOKEN_SECRET}`,
             { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
         );
         const refreshToken = jwt.sign(
             { id: user._id, isAdmin: user.isAdmin },
-            process.env.REFRESH_TOKEN_SECRET,
+            `${process.env.REFRESH_TOKEN_SECRET}`,
             { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
         );
         res.status(200).json({ message: 'Inloggningen lyckades', accessToken, refreshToken}) 
