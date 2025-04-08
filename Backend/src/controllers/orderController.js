@@ -20,7 +20,7 @@ export const createNewOrder = async (req, res) => {
         }
 
         const newOrder = new Order({
-            user: user.id,
+            user: user._id,
             items,
             shippingAddress,
             totalAmount
@@ -28,7 +28,6 @@ export const createNewOrder = async (req, res) => {
 
         await newOrder.save()
         user.orders.push(newOrder._id)
-        user.totalAmount += totalAmount;
         await user.save()
 
         res.status(201).json(newOrder)
