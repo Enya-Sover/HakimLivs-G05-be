@@ -8,6 +8,12 @@ import categoryRoutes from './routes/category.js'
 import orderRoutes from "./routes/order.js"
 import userRoutes from './routes/users.js'
 import { auth, adminAuth } from './middleware/auth.js';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import dataMigrationRouterCommon from "./migration/data.migration.route_module.js";
+import Product from "./models/Product.js";
+import Category from './models/Category.js';
+
 
 dotenv.config();
 
@@ -20,17 +26,12 @@ app.use(express.json());
 
 //Migration
 
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
 
 const _filename = fileURLToPath(import.meta.url);
 const _dirname = dirname(_filename);
 
-import dataMigrationRouterCommon from "./migration/data.migration.route_module.js";
-
 //Migration för Products
 
-import Product from "./models/Product.js";
 const dataPath = join(_dirname, "data", "products.json");
 console.log("Datapath", dataPath)
 app.use(
@@ -40,7 +41,6 @@ app.use(
 
 //Migration för Category
 
-import Category from './models/Category.js';
 const categoryDataPath  = join(_dirname, "data", "categories.json");
 app.use(
   "/api/data-migration/categories",
