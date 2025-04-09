@@ -74,7 +74,7 @@ app.get('/api', (req, res) => {
 app.use('/api/category', categoryRoutes)
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
-app.use("/api/order", auth, orderRoutes)
+app.use("/api/order", orderRoutes)
 app.use("/api/user", auth, adminAuth, userRoutes)
 
 // Connect to MongoDB

@@ -5,7 +5,7 @@ import { getUserOrders } from '../controllers/orderController.js';
 const userRoutes = express.Router();
 
 userRoutes.get("/", getAllUsers)
-userRoutes.get("/orders", getUserOrders) //api/user/orders
+userRoutes.get("/orders", getUserOrders) 
 
 export default userRoutes
 
