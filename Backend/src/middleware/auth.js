@@ -16,12 +16,14 @@ export const auth = async (req, res, next) => {
     return res.status(401).json({ message: 'Unapproved token' });
   }
 
-   next(); // Kika på varför det är return
+   next();
 };
 
 export const adminAuth = (req, res, next) => {
-  if (!req.user || !req.user.isAdmin) { 
-    return res.status(403).json({ message: 'Åtkomst nekad. Endast admins tillåtna.' });
+  if (req.user && req.user.isAdmin) {
+    next();
+  } else {
+    res.status(403).json({ error: 'Åtkomst nekad: Admins only' });
   }
-   next();
 };
+

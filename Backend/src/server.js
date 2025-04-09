@@ -71,7 +71,7 @@ app.get('/api', (req, res) => {
 });
 
 // Routes
-app.use('/api/category', auth, adminAuth, categoryRoutes)
+app.use('/api/category', categoryRoutes)
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use("/api/order", auth, orderRoutes)

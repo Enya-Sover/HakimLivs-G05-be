@@ -9,7 +9,7 @@ export const register = async (req, res) => {
         await user.save();
         // Avkommenteras när FE är klara
         const token = jwt.sign(
-            { id: user._id, isAdmin: user.isAdmin },
+            { userId: user._id },
             process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
         );
 
@@ -45,6 +45,8 @@ export const login = async (req, res) => {
             process.env.REFRESH_TOKEN_SECRET,
             { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
         );
+        user.refreshToken = refreshToken;
+        await user.save();
         res.status(200).json({ message: 'Inloggningen lyckades', accessToken, refreshToken}) 
     } catch (error) {
         res.status(500).json({ error: error.message })
