@@ -6,7 +6,7 @@ const orderRoutes = express.Router()
 
 orderRoutes.get("/", auth, adminAuth, getAllOrders)
 orderRoutes.get("/:id", auth, adminAuth, getOrderById )
-orderRoutes.post("/", auth, createNewOrder)
+orderRoutes.post("/", auth, createNewOrder) 
 
 
 export default orderRoutes
