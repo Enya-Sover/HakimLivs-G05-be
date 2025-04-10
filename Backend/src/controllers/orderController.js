@@ -1,13 +1,24 @@
 import Order from "../models/Order.js";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
+import Product from "../models/Product.js";
 
 //Skapa en order
 
 export const createNewOrder = async (req, res) => {
     try {
         const { items, shippingAddress } = req.body;
-
+        await Promise.all(items.map(async (item) => {
+            const product = await Product.findById(item.productId);
+            if (!product) {
+                return res.status(404).json({ message: "Product not found" });
+            }
+            if (product.stock < item.quantity) {
+                return res.status(400).json({ message: `${product.name} is not in stock` });
+            }
+            product.stock -= item.quantity;
+            await product.save();
+        }))
         const totalAmount = items.reduce((sum, item) => {
             return sum + item.price * item.quantity;
         }, 0);
@@ -17,8 +28,7 @@ export const createNewOrder = async (req, res) => {
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
         req.user = decoded;
         const userId = decoded.id;
-        console.log("Decoded token:", decoded)
-
+        
         
         if (!userId) {
             return res.status(404).json({ message: "User not found" })
@@ -30,7 +40,8 @@ export const createNewOrder = async (req, res) => {
             shippingAddress,
             totalAmount
         })
-        console.log("New order:", newOrder)
+        console.log(newOrder)
+        
         const user = await User.findById(userId)
         await newOrder.save()
         user.orders.push(newOrder._id)
