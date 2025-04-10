@@ -1,7 +1,6 @@
 import Order from "../models/Order.js";
 import User from "../models/User.js";
-import mongoose from "mongoose";
-
+import jwt from "jsonwebtoken";
 
 //Skapa en order
 
@@ -10,29 +9,36 @@ export const createNewOrder = async (req, res) => {
         const { items, shippingAddress } = req.body;
 
         const totalAmount = items.reduce((sum, item) => {
-        return sum + item.price * item.quantity;
+            return sum + item.price * item.quantity;
         }, 0);
 
+        const authHeader = req.headers['authorization']
+        const token = authHeader.split(' ')[1];
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        req.user = decoded;
+        const userId = decoded.id;
+        console.log("Decoded token:", decoded)
 
-        const user = await User.findById(req.user._id)
-        if(!user) {
-            return res.status(404).json({ message: "User not found"})
+        
+        if (!userId) {
+            return res.status(404).json({ message: "User not found" })
         }
-
+        
         const newOrder = new Order({
-            user: user._id,
+            user: userId,
             items,
             shippingAddress,
             totalAmount
         })
-
+        console.log("New order:", newOrder)
+        const user = await User.findById(userId)
         await newOrder.save()
         user.orders.push(newOrder._id)
         await user.save()
 
         res.status(201).json(newOrder)
     } catch (error) {
-        res.status(500).json({ message: "Error creating order", error: error})
+        res.status(500).json({ message: "Error creating order", error: error })
     }
 }
 
@@ -44,17 +50,17 @@ export const getAllOrders = async (req, res) => {
         res.status(200).json(orders)
     } catch (error) {
         console.log(error)
-        res.status(500).json({error: error.message})
-    } 
+        res.status(500).json({ error: error.message })
+    }
 }
 
 //Hämta via id
 export const getOrderById = async (req, res) => {
-    const {id} = req.params
+    const { id } = req.params
     try {
         const order = await Order.findById(id)
         if (order === null) {
-            return res.status(404).json({error: error.message})
+            return res.status(404).json({ error: error.message })
         } else {
             res.status(200).json(order)
         }
@@ -66,13 +72,13 @@ export const getOrderById = async (req, res) => {
 export const getUserOrders = async (req, res) => {
     try {
         const userId = req.user._id;
-        const orders = await Order.find({user: userId }).populate('items.productId')
+        const orders = await Order.find({ user: userId }).populate('items.productId')
 
         if (orders.length === 0) {
             return res.status(404).json({ message: 'Ingen orderhistorik finns kopplad till denna kund' })
         }
         res.status(200).json(orders);
-    } catch { 
+    } catch {
         res.status(500).json({ error: 'Serverfel', details: error.message });
 
     }

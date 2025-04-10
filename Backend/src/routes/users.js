@@ -7,7 +7,7 @@ const userRoutes = express.Router();
 userRoutes.get("/", getAllUsers)
 userRoutes.get("/:id", getUserById)
 userRoutes.get("/orders", getUserOrders) 
-userRoutes.put("/:id/password",  updatePassword )
+userRoutes.put("/:id/password", updatePassword)
 
 export default userRoutes
 
