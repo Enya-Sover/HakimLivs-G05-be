@@ -60,7 +60,7 @@ export const createNewCategory = async (req, res) => {
   try {
     const updatedCategory = await Category.findByIdAndUpdate(id, category, {new: true, runValidators: true})
     if (updateCategory === category){
-      return res.status().json('Category already exists')
+      return res.status(400).json('Category already exists')
     }
     res.status(200).json({success: true, data: updatedCategory})
   } catch (error) {
