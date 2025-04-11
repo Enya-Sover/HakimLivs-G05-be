@@ -12,7 +12,7 @@ export const createNewOrder = async (req, res) => {
         await Promise.all(items.map(async (item) => {
             const product = await Product.findById(item.productId);
             if (!product) {
-                return res.status(404).json('No product available');
+                return res.status(404).json({message: 'No product available'});
             }
             if (product.stock < item.quantity) {
                 return res.status(400).json({ message: `${product.name} is not in stock` });
