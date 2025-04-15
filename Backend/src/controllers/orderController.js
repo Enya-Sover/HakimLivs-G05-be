@@ -8,15 +8,17 @@ import Product from "../models/Product.js";
 export const createNewOrder = async (req, res) => {
     try {
         const { items, shippingAddress } = req.body;
+
         await Promise.all(items.map(async (item) => {
             const product = await Product.findById(item.productId);
             if (!product) {
-                return res.status(404).json({ message: "Product not found" });
+                return res.status(404).json({message: 'No product available'});
             }
             if (product.stock < item.quantity) {
                 return res.status(400).json({ message: `${product.name} is not in stock` });
             }
             product.stock -= item.quantity;
+
             await product.save();
         }))
         const totalAmount = items.reduce((sum, item) => {
@@ -40,12 +42,12 @@ export const createNewOrder = async (req, res) => {
             shippingAddress,
             totalAmount
         })
-        console.log(newOrder)
         
         const user = await User.findById(userId)
-        await newOrder.save()
+        user.totalAmount += totalAmount
         user.orders.push(newOrder._id)
         await user.save()
+        console.log(user)
 
         res.status(201).json(newOrder)
     } catch (error) {
