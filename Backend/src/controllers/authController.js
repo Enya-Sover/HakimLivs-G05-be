@@ -7,13 +7,29 @@ export const register = async (req, res) => {
     try {
         const user = new User(req.body);
         await user.save();
-        // Avkommenteras när FE är klara
+
         const token = jwt.sign(
             { userId: user._id },
             process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
         );
 
-        res.status(201).json({ user, token}); // <----- token när FE är klara
+        res.status(201).json({ user, token}); 
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
+export const registerAdmin = async (req, res) => {
+    try {
+        const user = new User({ ...req.body, isAdmin: req.body.isAdmin });
+        await user.save();
+
+        const token = jwt.sign(
+            { userId: user._id },
+            process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
+        );
+
+        res.status(201).json({ user, token}); 
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
