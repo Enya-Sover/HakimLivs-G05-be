@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
 export const register = async (req, res) => {
-<<<<<<< HEAD
     try {
         const user = new User(req.body);
         await user.save();
@@ -33,23 +32,6 @@ export const registerAdmin = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 }
-=======
-  try {
-    const user = new User(req.body);
-    await user.save();
-    // Avkommenteras när FE är klara
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
-    );
-
-    res.status(201).json({ user, token }); // <----- token när FE är klara
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
->>>>>>> bf3662b8c6f23d51e042cd554bfb95b83fd0ac14
 
 export const login = async (req, res) => {
   try {
