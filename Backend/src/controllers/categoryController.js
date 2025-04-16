@@ -65,6 +65,11 @@ export const createNewCategory = async (req, res) => {
 
   }
 }
+
+function getBaseUrl() {
+  return "http://localhost:3000/";
+}
+
   export const deleteCategory = async(req, res) => {
     const { id } = req.params;
     console.log('ID:', id);  // Log the ID to check its value
