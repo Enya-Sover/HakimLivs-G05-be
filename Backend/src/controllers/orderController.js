@@ -48,8 +48,9 @@ export const createNewOrder = async (req, res) => {
         user.totalAmount += totalAmount
         user.orders.push(newOrder._id)
         await user.save()
+        const populatedOrder = await Order.findById(newOrder._id).populate('user');
 
-        res.status(201).json(newOrder)
+        res.status(201).json(populatedOrder)
     } catch (error) {
         res.status(500).json({ message: "Error creating order", error: error })
     }
