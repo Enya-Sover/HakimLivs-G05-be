@@ -46,6 +46,7 @@ export const createNewOrder = async (req, res) => {
         const user = await User.findById(userId)
         user.totalAmount += totalAmount
         user.orders.push(newOrder._id)
+        await newOrder.save()
         await user.save()
         console.log(user)
 
