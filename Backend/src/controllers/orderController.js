@@ -10,7 +10,7 @@ export const createNewOrder = async (req, res) => {
         const { items, shippingAddress } = req.body;
 
         await Promise.all(items.map(async (item) => {
-            const product = await Product.findById(item.productId);
+            const product = await Product.findById(item.productId).populate('user', 'username email lojaltyBonus');
             if (!product) {
                 return res.status(404).json({message: 'No product available'});
             }
