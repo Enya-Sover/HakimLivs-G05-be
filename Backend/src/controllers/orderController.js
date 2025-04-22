@@ -9,6 +9,10 @@ export const createNewOrder = async (req, res) => {
     try {
         const { items, shippingAddress } = req.body;
 
+        if (!items || items.length === 0) {
+            return res.status(400).json({ message: "Order needs to contain at least one product" });
+        }
+
         await Promise.all(items.map(async (item) => {
             const product = await Product.findById(item.productId);
             if (!product) {
