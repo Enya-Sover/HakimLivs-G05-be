@@ -42,13 +42,12 @@ export const createNewOrder = async (req, res) => {
             shippingAddress,
             totalAmount
         })
+        await newOrder.save()
         
         const user = await User.findById(userId)
         user.totalAmount += totalAmount
         user.orders.push(newOrder._id)
-        await newOrder.save()
         await user.save()
-        console.log(user)
 
         res.status(201).json(newOrder)
     } catch (error) {
