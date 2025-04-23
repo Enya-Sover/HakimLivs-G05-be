@@ -7,6 +7,7 @@ import productRoutes from './routes/products.js';
 import categoryRoutes from './routes/category.js'
 import orderRoutes from "./routes/order.js"
 import userRoutes from './routes/users.js'
+import discountRoutes from './routes/discount.js'
 import { auth, adminAuth } from './middleware/auth.js';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -76,6 +77,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use("/api/order", orderRoutes) 
 app.use("/api/user", auth, adminAuth, userRoutes) 
+app.use("/api/discount", auth, adminAuth, discountRoutes) 
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hakim-livs')

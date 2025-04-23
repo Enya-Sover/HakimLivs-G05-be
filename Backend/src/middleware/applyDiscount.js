@@ -1,12 +1,11 @@
 import DiscountCode from "../models/DiscountCode.js";
-// applyDiscount.js
+
 export const applyDiscount = async (req, res, next) => {
   const { discountCode, total } = req.body;
 
   if (!discountCode) {
-    return next(); 
+    return next();
   }
-
   const code = await DiscountCode.findOne({ code: discountCode });
 
   if (!code) {
@@ -17,9 +16,16 @@ export const applyDiscount = async (req, res, next) => {
     return res.status(400).json({ error: "Rabattkoden har gått ut" });
   }
 
-  const newTotal = total - (total * code.percentage / 100);
-  req.body.total = Math.max(0, newTotal); 
+  // Räkna ut rabatt
+  const discountAmount = Math.round((total * code.percentage) / 100); // heltal, du kan ta bort Math.round om du vill ha decimaler
+  const newTotal = Math.max(0, total - discountAmount); // aldrig under 0
+
+  // Uppdatera req.body
+  req.body.total = newTotal;
+  req.body.discountAmount = discountAmount;
+  req.body.discountCode = code.code;
 
   next();
-}
+};
+
 

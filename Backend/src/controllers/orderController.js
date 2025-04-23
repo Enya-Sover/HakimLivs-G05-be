@@ -7,7 +7,7 @@ import Product from "../models/Product.js";
 
 export const createNewOrder = async (req, res) => {
     try {
-        const { items, shippingAddress } = req.body;
+        const { items, shippingAddress, discountCode, total, discountAmount } = req.body;
 
         if (!items || items.length === 0) {
             return res.status(400).json({ message: "Order needs to contain at least one product" });
@@ -25,7 +25,7 @@ export const createNewOrder = async (req, res) => {
 
             await product.save();
         }))
-        const totalAmount = items.reduce((sum, item) => {
+        const totalAmountBeforeDiscount = items.reduce((sum, item) => {
             return sum + item.price * item.quantity;
         }, 0);
 
@@ -44,7 +44,10 @@ export const createNewOrder = async (req, res) => {
             user: userId,
             items,
             shippingAddress,
-            totalAmount
+            totalAmount: total, 
+            totalAmountBeforeDiscount,
+            discountCode: discountCode || null,
+            discountAmount: discountAmount || 0
         })
         await newOrder.save()
         

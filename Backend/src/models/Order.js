@@ -30,12 +30,24 @@ const orderSchema = new mongoose.Schema ({
         city: {type: String, required: true},
         country: {type: String, required:true}
     },
+    totalAmountBeforeDiscount: {
+        type: Number,
+        required: true
+    },
     totalAmount: {
         type: Number,
-        // required: true
+        required: true
     },
-    }, {
-        timestamps: true
-    })
+    discountCode: {
+        type: String,
+        required: false
+    },
+    discountAmount: {
+        type: Number,
+        required: false
+    }
+}, {
+    timestamps: true
+});
 
-export default mongoose.model("Order", orderSchema)
+export default mongoose.model("Order", orderSchema);
