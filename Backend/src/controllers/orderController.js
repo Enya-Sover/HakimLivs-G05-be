@@ -8,15 +8,21 @@ import Product from "../models/Product.js";
 export const createNewOrder = async (req, res) => {
     try {
         const { items, shippingAddress } = req.body;
+
+        if (!items || items.length === 0) {
+            return res.status(400).json({ message: "Order needs to contain at least one product" });
+        }
+
         await Promise.all(items.map(async (item) => {
             const product = await Product.findById(item.productId);
             if (!product) {
-                return res.status(404).json({ message: "Product not found" });
+                return res.status(404).json({message: 'No product available'});
             }
             if (product.stock < item.quantity) {
                 return res.status(400).json({ message: `${product.name} is not in stock` });
             }
             product.stock -= item.quantity;
+
             await product.save();
         }))
         const totalAmount = items.reduce((sum, item) => {
@@ -40,14 +46,15 @@ export const createNewOrder = async (req, res) => {
             shippingAddress,
             totalAmount
         })
-        console.log(newOrder)
+        await newOrder.save()
         
         const user = await User.findById(userId)
-        await newOrder.save()
+        user.totalAmount += totalAmount
         user.orders.push(newOrder._id)
         await user.save()
+        const populatedOrder = await Order.findById(newOrder._id).populate('user');
 
-        res.status(201).json(newOrder)
+        res.status(201).json(populatedOrder)
     } catch (error) {
         res.status(500).json({ message: "Error creating order", error: error })
     }
@@ -57,7 +64,7 @@ export const createNewOrder = async (req, res) => {
 
 export const getAllOrders = async (req, res) => {
     try {
-        const orders = await Order.find()
+        const orders = await Order.find().populate('user').populate('items.productId')
         res.status(200).json(orders)
     } catch (error) {
         console.log(error)

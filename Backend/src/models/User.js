@@ -97,6 +97,7 @@ userSchema.methods.generateRefreshToken = function () {
   );
 };
 
+// Trogenkundlogik
 userSchema.pre('save', function(next) {
   if (this.totalAmount >= 10000) {
     this.lojaltyBonus = true;
