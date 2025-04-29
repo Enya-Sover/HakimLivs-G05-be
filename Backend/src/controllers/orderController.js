@@ -101,3 +101,33 @@ export const getUserOrders = async (req, res) => {
 
     }
 }
+
+export const getRevenuePerMonth = async (req, res) => {
+    const today = new Date()
+    const oneYearAgo = new Date();
+    oneYearAgo.setFullYear(today.getFullYear() - 1);
+    oneYearAgo.setMonth(today.getMonth());
+    const orders = await Order.find({
+        createdAt: { $gte: oneYearAgo, $lte: today }
+      });
+      const getRevenuePerMonth = {};
+
+    try {
+        orders.forEach(order => {
+            const date = new Date(order.createdAt);
+            const month = date.toLocaleString('sv-SE', { month: 'long' });
+            const year = date.getFullYear();
+            const key = `Revenue for: ${month}-${year}`;
+            if (!getRevenuePerMonth[key]) {
+                getRevenuePerMonth[key] = 0;
+            }
+            getRevenuePerMonth[key] += order.totalAmount;
+
+        })
+        res.status(200).json(getRevenuePerMonth)
+    
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Något gick fel" });
+    }
+}
