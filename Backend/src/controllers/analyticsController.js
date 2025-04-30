@@ -1,16 +1,9 @@
 import Order from "../models/Order.js";
 import User from "../models/User.js";
-import jwt from "jsonwebtoken";
 
 
 export const getRevenuePerMonth = async (req, res) => {
     try {
-        const token = req.headers['authorization'];
-        const decoded = jwt.verify(token.split(' ')[1], process.env.ACCESS_TOKEN_SECRET);
-        if (!decoded.isAdmin) {
-            return res.status(404).json({ message: "Sidan hittades inte" });
-        }
-        
         const today = new Date()
         const oneYearAgo = new Date();
         oneYearAgo.setFullYear(today.getFullYear() - 1);
@@ -40,12 +33,6 @@ export const getRevenuePerMonth = async (req, res) => {
 
 export const topCostumers = async (req, res) => {
     try {
-        const token = req.headers['authorization'];
-        const decoded = jwt.verify(token.split(' ')[1], process.env.ACCESS_TOKEN_SECRET);
-        if (!decoded.isAdmin) {
-            return res.status(404).json({ message: "Sidan hittades inte" });
-        }
-        
         const today = new Date()
         const oneYearAgo = new Date();
         oneYearAgo.setFullYear(today.getFullYear() - 1);
